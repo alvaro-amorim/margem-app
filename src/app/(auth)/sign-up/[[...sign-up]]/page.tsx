@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SignUp } from "@clerk/nextjs";
 
+import { clerkEmbeddedAppearance } from "@/lib/clerk-theme";
 import { isClerkConfigured } from "@/lib/env";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -26,8 +27,12 @@ export default function SignUpPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-4 py-10">
-      <SignUp />
-    </main>
+    <SignUp
+      routing="path"
+      path="/sign-up"
+      signInUrl="/sign-in"
+      fallbackRedirectUrl="/dashboard"
+      appearance={clerkEmbeddedAppearance}
+    />
   );
 }

@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
-import { UserButton } from "@clerk/nextjs";
 import { BellRing, ChevronRight } from "lucide-react";
 
+import { AppLogo } from "@/components/branding/app-logo";
+import { AppUserButton } from "@/components/auth/app-user-button";
 import { isClerkConfigured } from "@/lib/env";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
 import { Badge } from "@/components/ui/badge";
@@ -27,7 +27,7 @@ export function AppShell({
       <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 gap-4 px-3 py-3 sm:px-4 md:gap-5 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6 lg:px-6">
         <aside className="min-w-0 rounded-[2rem] border border-border bg-white/90 p-3 shadow-[0_30px_80px_-40px_rgba(148,163,184,0.55)] backdrop-blur sm:p-4 lg:p-6">
           <div className="flex items-center justify-end sm:hidden">
-            {isClerkConfigured() ? <UserButton /> : null}
+            {isClerkConfigured() ? <AppUserButton /> : null}
           </div>
 
           <div className="hidden items-center justify-between gap-4 sm:flex lg:hidden">
@@ -44,24 +44,12 @@ export function AppShell({
               <Button variant="outline" size="icon" aria-label="Notificacoes">
                 <BellRing className="size-4" />
               </Button>
-              {isClerkConfigured() ? <UserButton /> : null}
+              {isClerkConfigured() ? <AppUserButton /> : null}
             </div>
           </div>
 
           <div className="hidden space-y-4 lg:block">
-            <Link href="/" className="inline-flex items-center gap-3">
-              <div className="flex size-11 items-center justify-center rounded-2xl bg-foreground text-background">
-                MA
-              </div>
-              <div className="min-w-0">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                  MARGEM APP
-                </p>
-                <h1 className="truncate text-lg font-semibold text-slate-900">
-                  Calculadora de precificacao
-                </h1>
-              </div>
-            </Link>
+            <AppLogo href="/" size="md" priority />
 
             <Badge variant="secondary" className="w-fit">
               Gestao de custos
@@ -98,7 +86,7 @@ export function AppShell({
               <Button variant="outline" size="icon" aria-label="Notificacoes">
                 <BellRing className="size-4" />
               </Button>
-              {isClerkConfigured() ? <UserButton /> : null}
+              {isClerkConfigured() ? <AppUserButton /> : null}
             </div>
           </header>
 

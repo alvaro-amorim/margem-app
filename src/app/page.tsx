@@ -7,6 +7,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { AppLogo } from "@/components/branding/app-logo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,12 +36,7 @@ export default function Home() {
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-4 py-5 sm:px-5 sm:py-6 lg:px-6">
         <header className="flex flex-col gap-4 rounded-[2rem] border border-border bg-white/85 px-5 py-5 shadow-[0_24px_80px_-40px_rgba(51,65,85,0.45)] backdrop-blur sm:px-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-              MARGEM APP
-            </p>
-            <h1 className="mt-1 text-2xl font-semibold text-slate-950 sm:text-3xl">
-              Calculadora de precificacao
-            </h1>
+            <AppLogo href="/" size="md" priority />
           </div>
 
           <div className="grid grid-cols-2 gap-3 sm:w-auto">
