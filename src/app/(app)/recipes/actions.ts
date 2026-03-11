@@ -10,6 +10,7 @@ import {
 import { requireAuthenticatedContext } from "@/lib/auth";
 import {
   createRecipe,
+  deleteRecipe,
   getRecipeDetails,
   updateRecipe,
 } from "@/server/recipes/service";
@@ -97,5 +98,27 @@ export async function updateRecipeAction(
     status: "success",
     redirectTo: `/recipes/${recipeId}?saved=1`,
     message: "Receita atualizada com sucesso.",
+  };
+}
+
+export async function deleteRecipeAction(recipeId: string) {
+  const { user, workspace } = await requireAuthenticatedContext();
+  const result = await deleteRecipe(recipeId, {
+    workspaceId: workspace.id,
+    userId: user.id,
+  });
+
+  if (!result.success) {
+    return {
+      redirectTo: "/recipes?deleteError=not-found",
+    };
+  }
+
+  revalidatePath("/recipes");
+  revalidatePath("/pricing");
+  revalidatePath(`/recipes/${recipeId}`);
+
+  return {
+    redirectTo: "/recipes?deleted=1",
   };
 }

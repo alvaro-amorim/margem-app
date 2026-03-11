@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { startTransition, useActionState, useEffect, useRef, useState } from "react";
+import {
+  startTransition,
+  useActionState,
+  useEffect,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import { useFormStatus } from "react-dom";
 import { ArrowLeft, CookingPot, Plus, Trash2 } from "lucide-react";
 
@@ -14,6 +21,7 @@ import type { BaseUnit } from "@/generated/prisma/enums";
 import { baseUnitShortLabels } from "@/features/ingredients/constants";
 import { cn, formatCurrency, formatNumber } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -56,6 +64,11 @@ type RecipeFormProps = {
   ) => Promise<RecipeActionState>;
   initialValues: RecipeFormValues;
   availableIngredients: RecipeFormIngredientOption[];
+  deleteAction?: () => Promise<{
+    redirectTo: string;
+  }>;
+  deleteLabel?: string;
+  deleteConfirmMessage?: string;
 };
 
 function createEmptyItem(id: string): RecipeFormItemValue {
@@ -101,6 +114,89 @@ function SubmitButton({
   );
 }
 
+function DeleteRecipeButton({
+  action,
+  confirmMessage,
+  label,
+}: {
+  action: () => Promise<{
+    redirectTo: string;
+  }>;
+  confirmMessage: string;
+  label: string;
+}) {
+  const router = useRouter();
+  const [isPending, startDeleteTransition] = useTransition();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+  const deleteStartedRef = useRef(false);
+
+  function handleOpenDialog() {
+    if (isPending) {
+      return;
+    }
+
+    setDeleteError(null);
+    setIsDialogOpen(true);
+  }
+
+  function handleDialogChange(open: boolean) {
+    if (isPending) {
+      return;
+    }
+
+    setDeleteError(null);
+    setIsDialogOpen(open);
+  }
+
+  function handleDelete() {
+    if (deleteStartedRef.current || isPending) {
+      return;
+    }
+
+    deleteStartedRef.current = true;
+    setDeleteError(null);
+
+    startDeleteTransition(async () => {
+      try {
+        const result = await action();
+        setIsDialogOpen(false);
+        router.replace(result.redirectTo);
+      } catch {
+        deleteStartedRef.current = false;
+        setDeleteError("Nao foi possivel excluir agora. Tente novamente em alguns instantes.");
+      }
+    });
+  }
+
+  return (
+    <>
+      <Button
+        type="button"
+        size="lg"
+        variant="destructive"
+        disabled={isPending}
+        onClick={handleOpenDialog}
+      >
+        <Trash2 className="size-4" />
+        {isPending ? "Excluindo receita..." : label}
+      </Button>
+
+      <ConfirmDialog
+        open={isDialogOpen}
+        title="Excluir receita"
+        description={confirmMessage}
+        confirmLabel={label}
+        confirmingLabel="Excluindo receita..."
+        isConfirming={isPending}
+        errorMessage={deleteError ?? undefined}
+        onConfirm={handleDelete}
+        onOpenChange={handleDialogChange}
+      />
+    </>
+  );
+}
+
 export function RecipeForm({
   mode,
   title,
@@ -110,6 +206,9 @@ export function RecipeForm({
   action,
   initialValues,
   availableIngredients,
+  deleteAction,
+  deleteLabel = "Excluir receita",
+  deleteConfirmMessage = "Quer mesmo excluir essa receita? Todos os itens, simulacoes e o perfil de precificacao vinculados a ela serao removidos permanentemente.",
 }: RecipeFormProps) {
   const router = useRouter();
   const [state, formAction] = useActionState(action, initialRecipeActionState);
@@ -490,6 +589,13 @@ export function RecipeForm({
           <Button asChild variant="outline">
             <Link href={cancelHref}>Cancelar</Link>
           </Button>
+          {mode === "edit" && deleteAction ? (
+            <DeleteRecipeButton
+              action={deleteAction}
+              confirmMessage={deleteConfirmMessage}
+              label={deleteLabel}
+            />
+          ) : null}
           <SubmitButton
             label={submitLabel}
             pendingLabel={mode === "create" ? "Salvando receita..." : "Atualizando receita..."}

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CookingPot, Layers3, Wallet } from "lucide-react";
 
-import { updateRecipeAction } from "@/app/(app)/recipes/actions";
+import { deleteRecipeAction, updateRecipeAction } from "@/app/(app)/recipes/actions";
 import { RecipeForm } from "@/components/recipes/recipe-form";
 import { baseUnitShortLabels } from "@/features/ingredients/constants";
 import { calculateRecipePricing } from "@/features/pricing/engine";
@@ -55,6 +55,7 @@ export default async function RecipeDetailPage({
     );
   }, 0);
   const boundUpdateAction = updateRecipeAction.bind(null, recipe.id);
+  const boundDeleteAction = deleteRecipeAction.bind(null, recipe.id);
   const bannerMessage = query.created
     ? "Receita criada com sucesso."
     : query.saved
@@ -159,6 +160,7 @@ export default async function RecipeDetailPage({
         submitLabel="Atualizar receita"
         cancelHref="/recipes"
         action={boundUpdateAction}
+        deleteAction={boundDeleteAction}
         availableIngredients={ingredients.map((ingredient) => ({
           ...ingredient,
           unitCostInBaseUnit: Number(ingredient.unitCostInBaseUnit),

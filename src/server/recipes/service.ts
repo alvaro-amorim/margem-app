@@ -390,6 +390,41 @@ export async function updateRecipe(input: UpdateRecipeInput, actor: ActorContext
   }
 }
 
+export async function deleteRecipe(recipeId: string, actor: ActorContext) {
+  const prisma = getPrisma();
+  const existingRecipe = await prisma.recipe.findFirst({
+    where: {
+      id: recipeId,
+      workspaceId: actor.workspaceId,
+      isArchived: false,
+    },
+    select: {
+      id: true,
+      name: true,
+    },
+  });
+
+  if (!existingRecipe) {
+    return {
+      success: false as const,
+      code: "not_found" as const,
+      message: "Receita nao encontrada no seu workspace.",
+    };
+  }
+
+  await prisma.recipe.delete({
+    where: {
+      id: existingRecipe.id,
+    },
+  });
+
+  return {
+    success: true as const,
+    recipeId: existingRecipe.id,
+    recipeName: existingRecipe.name,
+  };
+}
+
 export type RecipePricingContext = {
   recipe: {
     id: string;

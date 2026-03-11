@@ -10,6 +10,7 @@ type ConfirmDialogProps = {
   title: string;
   description: string;
   confirmLabel: string;
+  confirmingLabel?: string;
   cancelLabel?: string;
   isConfirming?: boolean;
   errorMessage?: string;
@@ -22,6 +23,7 @@ export function ConfirmDialog({
   title,
   description,
   confirmLabel,
+  confirmingLabel = "Confirmando...",
   cancelLabel = "Cancelar",
   isConfirming = false,
   errorMessage,
@@ -107,7 +109,7 @@ export function ConfirmDialog({
             {cancelLabel}
           </Button>
           <Button type="button" variant="destructive" disabled={isConfirming} onClick={onConfirm}>
-            {isConfirming ? "Excluindo ingrediente..." : confirmLabel}
+            {isConfirming ? confirmingLabel : confirmLabel}
           </Button>
         </div>
       </div>

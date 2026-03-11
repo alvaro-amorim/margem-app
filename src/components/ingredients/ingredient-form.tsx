@@ -193,6 +193,7 @@ function DeleteIngredientButton({
         title="Excluir ingrediente"
         description={confirmMessage}
         confirmLabel={label}
+        confirmingLabel="Excluindo ingrediente..."
         isConfirming={isPending}
         errorMessage={deleteError ?? undefined}
         onConfirm={handleDelete}

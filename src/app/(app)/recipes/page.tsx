@@ -11,7 +11,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default async function RecipesPage() {
+type RecipesPageProps = {
+  searchParams: Promise<{
+    deleted?: string;
+    deleteError?: string;
+  }>;
+};
+
+export default async function RecipesPage({ searchParams }: RecipesPageProps) {
+  const query = await searchParams;
   const authContext = await requireAuthenticatedContext();
   const [recipes, ingredients] = await Promise.all([
     listWorkspaceRecipes(authContext.workspace.id),
@@ -19,9 +27,32 @@ export default async function RecipesPage() {
   ]);
 
   const totalRecipeItems = recipes.reduce((accumulator, recipe) => accumulator + recipe.itemCount, 0);
+  const banner = query.deleted
+    ? {
+        tone: "success" as const,
+        message: "Receita excluida permanentemente com sucesso.",
+      }
+    : query.deleteError
+      ? {
+          tone: "error" as const,
+          message: "Nao foi possivel localizar a receita que voce tentou excluir.",
+        }
+      : null;
 
   return (
     <div className="space-y-6">
+      {banner ? (
+        <div
+          className={
+            banner.tone === "error"
+              ? "rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700"
+              : "rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700"
+          }
+        >
+          {banner.message}
+        </div>
+      ) : null}
+
       <Card>
         <CardHeader>
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
