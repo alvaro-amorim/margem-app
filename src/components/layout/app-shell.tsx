@@ -14,6 +14,7 @@ type AppShellProps = {
   title: string;
   workspaceName: string;
   userName: string;
+  showAdmin?: boolean;
 };
 
 export function AppShell({
@@ -21,6 +22,7 @@ export function AppShell({
   title,
   workspaceName,
   userName,
+  showAdmin = false,
 }: AppShellProps) {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top_left,rgba(245,158,11,0.16),transparent_30%),linear-gradient(180deg,#fffdf8_0%,#f7f4ea_100%)]">
@@ -58,7 +60,7 @@ export function AppShell({
 
           <Separator className="my-4 hidden lg:block" />
 
-          <SidebarNav />
+          <SidebarNav showAdmin={showAdmin} />
 
           <div className="mt-4 hidden rounded-3xl bg-[color:var(--card-muted)] p-5 lg:block">
             <p className="truncate text-sm font-semibold text-slate-900">{workspaceName}</p>

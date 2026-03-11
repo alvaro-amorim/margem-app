@@ -393,7 +393,8 @@ export const ModelName = {
   RecipeItem: 'RecipeItem',
   PricingSettings: 'PricingSettings',
   RecipePricingProfile: 'RecipePricingProfile',
-  PricingRun: 'PricingRun'
+  PricingRun: 'PricingRun',
+  EmailBlocklist: 'EmailBlocklist'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -409,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "workspace" | "workspaceMember" | "ingredient" | "ingredientPriceHistory" | "recipe" | "recipeItem" | "pricingSettings" | "recipePricingProfile" | "pricingRun"
+    modelProps: "user" | "workspace" | "workspaceMember" | "ingredient" | "ingredientPriceHistory" | "recipe" | "recipeItem" | "pricingSettings" | "recipePricingProfile" | "pricingRun" | "emailBlocklist"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1153,6 +1154,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    EmailBlocklist: {
+      payload: Prisma.$EmailBlocklistPayload<ExtArgs>
+      fields: Prisma.EmailBlocklistFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EmailBlocklistFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EmailBlocklistFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload>
+        }
+        findFirst: {
+          args: Prisma.EmailBlocklistFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EmailBlocklistFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload>
+        }
+        findMany: {
+          args: Prisma.EmailBlocklistFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload>[]
+        }
+        create: {
+          args: Prisma.EmailBlocklistCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload>
+        }
+        createMany: {
+          args: Prisma.EmailBlocklistCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EmailBlocklistCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload>[]
+        }
+        delete: {
+          args: Prisma.EmailBlocklistDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload>
+        }
+        update: {
+          args: Prisma.EmailBlocklistUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload>
+        }
+        deleteMany: {
+          args: Prisma.EmailBlocklistDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EmailBlocklistUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EmailBlocklistUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload>[]
+        }
+        upsert: {
+          args: Prisma.EmailBlocklistUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailBlocklistPayload>
+        }
+        aggregate: {
+          args: Prisma.EmailBlocklistAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEmailBlocklist>
+        }
+        groupBy: {
+          args: Prisma.EmailBlocklistGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmailBlocklistGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EmailBlocklistCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmailBlocklistCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1199,6 +1274,10 @@ export const UserScalarFieldEnum = {
   firstName: 'firstName',
   lastName: 'lastName',
   imageUrl: 'imageUrl',
+  platformRole: 'platformRole',
+  status: 'status',
+  blockedReason: 'blockedReason',
+  blockedAt: 'blockedAt',
   defaultWorkspaceId: 'defaultWorkspaceId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1212,6 +1291,7 @@ export const WorkspaceScalarFieldEnum = {
   name: 'name',
   slug: 'slug',
   ownerId: 'ownerId',
+  plan: 'plan',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1389,6 +1469,17 @@ export const PricingRunScalarFieldEnum = {
 export type PricingRunScalarFieldEnum = (typeof PricingRunScalarFieldEnum)[keyof typeof PricingRunScalarFieldEnum]
 
 
+export const EmailBlocklistScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  reason: 'reason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmailBlocklistScalarFieldEnum = (typeof EmailBlocklistScalarFieldEnum)[keyof typeof EmailBlocklistScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1450,6 +1541,34 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
+ * Reference to a field of type 'PlatformRole'
+ */
+export type EnumPlatformRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlatformRole'>
+    
+
+
+/**
+ * Reference to a field of type 'PlatformRole[]'
+ */
+export type ListEnumPlatformRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlatformRole[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PlatformUserStatus'
+ */
+export type EnumPlatformUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlatformUserStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PlatformUserStatus[]'
+ */
+export type ListEnumPlatformUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlatformUserStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -1460,6 +1579,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkspacePlan'
+ */
+export type EnumWorkspacePlanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkspacePlan'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkspacePlan[]'
+ */
+export type ListEnumWorkspacePlanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkspacePlan[]'>
     
 
 
@@ -1672,6 +1805,7 @@ export type GlobalOmitConfig = {
   pricingSettings?: Prisma.PricingSettingsOmit
   recipePricingProfile?: Prisma.RecipePricingProfileOmit
   pricingRun?: Prisma.PricingRunOmit
+  emailBlocklist?: Prisma.EmailBlocklistOmit
 }
 
 /* Types for Logging */

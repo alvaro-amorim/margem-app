@@ -29,6 +29,7 @@ export type WorkspaceMinAggregateOutputType = {
   name: string | null
   slug: string | null
   ownerId: string | null
+  plan: $Enums.WorkspacePlan | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -38,6 +39,7 @@ export type WorkspaceMaxAggregateOutputType = {
   name: string | null
   slug: string | null
   ownerId: string | null
+  plan: $Enums.WorkspacePlan | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -47,6 +49,7 @@ export type WorkspaceCountAggregateOutputType = {
   name: number
   slug: number
   ownerId: number
+  plan: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -58,6 +61,7 @@ export type WorkspaceMinAggregateInputType = {
   name?: true
   slug?: true
   ownerId?: true
+  plan?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -67,6 +71,7 @@ export type WorkspaceMaxAggregateInputType = {
   name?: true
   slug?: true
   ownerId?: true
+  plan?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -76,6 +81,7 @@ export type WorkspaceCountAggregateInputType = {
   name?: true
   slug?: true
   ownerId?: true
+  plan?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -158,6 +164,7 @@ export type WorkspaceGroupByOutputType = {
   name: string
   slug: string
   ownerId: string
+  plan: $Enums.WorkspacePlan
   createdAt: Date
   updatedAt: Date
   _count: WorkspaceCountAggregateOutputType | null
@@ -188,6 +195,7 @@ export type WorkspaceWhereInput = {
   name?: Prisma.StringFilter<"Workspace"> | string
   slug?: Prisma.StringFilter<"Workspace"> | string
   ownerId?: Prisma.StringFilter<"Workspace"> | string
+  plan?: Prisma.EnumWorkspacePlanFilter<"Workspace"> | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   ingredients?: Prisma.IngredientListRelationFilter
@@ -206,6 +214,7 @@ export type WorkspaceOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
+  plan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   ingredients?: Prisma.IngredientOrderByRelationAggregateInput
@@ -227,6 +236,7 @@ export type WorkspaceWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.WorkspaceWhereInput | Prisma.WorkspaceWhereInput[]
   name?: Prisma.StringFilter<"Workspace"> | string
   ownerId?: Prisma.StringFilter<"Workspace"> | string
+  plan?: Prisma.EnumWorkspacePlanFilter<"Workspace"> | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   ingredients?: Prisma.IngredientListRelationFilter
@@ -245,6 +255,7 @@ export type WorkspaceOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
+  plan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.WorkspaceCountOrderByAggregateInput
@@ -260,6 +271,7 @@ export type WorkspaceScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Workspace"> | string
   slug?: Prisma.StringWithAggregatesFilter<"Workspace"> | string
   ownerId?: Prisma.StringWithAggregatesFilter<"Workspace"> | string
+  plan?: Prisma.EnumWorkspacePlanWithAggregatesFilter<"Workspace"> | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Workspace"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Workspace"> | Date | string
 }
@@ -268,6 +280,7 @@ export type WorkspaceCreateInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutWorkspaceInput
@@ -286,6 +299,7 @@ export type WorkspaceUncheckedCreateInput = {
   name: string
   slug: string
   ownerId: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -302,6 +316,7 @@ export type WorkspaceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutWorkspaceNestedInput
@@ -320,6 +335,7 @@ export type WorkspaceUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -337,6 +353,7 @@ export type WorkspaceCreateManyInput = {
   name: string
   slug: string
   ownerId: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -345,6 +362,7 @@ export type WorkspaceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -354,6 +372,7 @@ export type WorkspaceUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -378,6 +397,7 @@ export type WorkspaceCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
+  plan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -387,6 +407,7 @@ export type WorkspaceMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
+  plan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -396,6 +417,7 @@ export type WorkspaceMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
+  plan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -461,6 +483,10 @@ export type WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput = {
   update?: Prisma.WorkspaceUpdateWithWhereUniqueWithoutOwnerInput | Prisma.WorkspaceUpdateWithWhereUniqueWithoutOwnerInput[]
   updateMany?: Prisma.WorkspaceUpdateManyWithWhereWithoutOwnerInput | Prisma.WorkspaceUpdateManyWithWhereWithoutOwnerInput[]
   deleteMany?: Prisma.WorkspaceScalarWhereInput | Prisma.WorkspaceScalarWhereInput[]
+}
+
+export type EnumWorkspacePlanFieldUpdateOperationsInput = {
+  set?: $Enums.WorkspacePlan
 }
 
 export type WorkspaceCreateNestedOneWithoutMembershipsInput = {
@@ -565,6 +591,7 @@ export type WorkspaceCreateWithoutUsersDefaultingInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutWorkspaceInput
@@ -582,6 +609,7 @@ export type WorkspaceUncheckedCreateWithoutUsersDefaultingInput = {
   name: string
   slug: string
   ownerId: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -602,6 +630,7 @@ export type WorkspaceCreateWithoutOwnerInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutWorkspaceInput
@@ -618,6 +647,7 @@ export type WorkspaceUncheckedCreateWithoutOwnerInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -655,6 +685,7 @@ export type WorkspaceUpdateWithoutUsersDefaultingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutWorkspaceNestedInput
@@ -672,6 +703,7 @@ export type WorkspaceUncheckedUpdateWithoutUsersDefaultingInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -707,6 +739,7 @@ export type WorkspaceScalarWhereInput = {
   name?: Prisma.StringFilter<"Workspace"> | string
   slug?: Prisma.StringFilter<"Workspace"> | string
   ownerId?: Prisma.StringFilter<"Workspace"> | string
+  plan?: Prisma.EnumWorkspacePlanFilter<"Workspace"> | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
 }
@@ -715,6 +748,7 @@ export type WorkspaceCreateWithoutMembershipsInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutWorkspaceInput
@@ -732,6 +766,7 @@ export type WorkspaceUncheckedCreateWithoutMembershipsInput = {
   name: string
   slug: string
   ownerId: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -763,6 +798,7 @@ export type WorkspaceUpdateWithoutMembershipsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutWorkspaceNestedInput
@@ -780,6 +816,7 @@ export type WorkspaceUncheckedUpdateWithoutMembershipsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -795,6 +832,7 @@ export type WorkspaceCreateWithoutIngredientsInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.WorkspaceMemberCreateNestedManyWithoutWorkspaceInput
@@ -812,6 +850,7 @@ export type WorkspaceUncheckedCreateWithoutIngredientsInput = {
   name: string
   slug: string
   ownerId: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.WorkspaceMemberUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -843,6 +882,7 @@ export type WorkspaceUpdateWithoutIngredientsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.WorkspaceMemberUpdateManyWithoutWorkspaceNestedInput
@@ -860,6 +900,7 @@ export type WorkspaceUncheckedUpdateWithoutIngredientsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.WorkspaceMemberUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -875,6 +916,7 @@ export type WorkspaceCreateWithoutPriceHistoryInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutWorkspaceInput
@@ -892,6 +934,7 @@ export type WorkspaceUncheckedCreateWithoutPriceHistoryInput = {
   name: string
   slug: string
   ownerId: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -923,6 +966,7 @@ export type WorkspaceUpdateWithoutPriceHistoryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutWorkspaceNestedInput
@@ -940,6 +984,7 @@ export type WorkspaceUncheckedUpdateWithoutPriceHistoryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -955,6 +1000,7 @@ export type WorkspaceCreateWithoutRecipesInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutWorkspaceInput
@@ -972,6 +1018,7 @@ export type WorkspaceUncheckedCreateWithoutRecipesInput = {
   name: string
   slug: string
   ownerId: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1003,6 +1050,7 @@ export type WorkspaceUpdateWithoutRecipesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutWorkspaceNestedInput
@@ -1020,6 +1068,7 @@ export type WorkspaceUncheckedUpdateWithoutRecipesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1035,6 +1084,7 @@ export type WorkspaceCreateWithoutPricingSettingsInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutWorkspaceInput
@@ -1052,6 +1102,7 @@ export type WorkspaceUncheckedCreateWithoutPricingSettingsInput = {
   name: string
   slug: string
   ownerId: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1083,6 +1134,7 @@ export type WorkspaceUpdateWithoutPricingSettingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutWorkspaceNestedInput
@@ -1100,6 +1152,7 @@ export type WorkspaceUncheckedUpdateWithoutPricingSettingsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1115,6 +1168,7 @@ export type WorkspaceCreateWithoutRecipeProfilesInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutWorkspaceInput
@@ -1132,6 +1186,7 @@ export type WorkspaceUncheckedCreateWithoutRecipeProfilesInput = {
   name: string
   slug: string
   ownerId: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1163,6 +1218,7 @@ export type WorkspaceUpdateWithoutRecipeProfilesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutWorkspaceNestedInput
@@ -1180,6 +1236,7 @@ export type WorkspaceUncheckedUpdateWithoutRecipeProfilesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1195,6 +1252,7 @@ export type WorkspaceCreateWithoutPricingRunsInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutWorkspaceInput
@@ -1212,6 +1270,7 @@ export type WorkspaceUncheckedCreateWithoutPricingRunsInput = {
   name: string
   slug: string
   ownerId: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1243,6 +1302,7 @@ export type WorkspaceUpdateWithoutPricingRunsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutWorkspaceNestedInput
@@ -1260,6 +1320,7 @@ export type WorkspaceUncheckedUpdateWithoutPricingRunsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1275,6 +1336,7 @@ export type WorkspaceCreateManyOwnerInput = {
   id?: string
   name: string
   slug: string
+  plan?: $Enums.WorkspacePlan
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1283,6 +1345,7 @@ export type WorkspaceUpdateWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutWorkspaceNestedInput
@@ -1299,6 +1362,7 @@ export type WorkspaceUncheckedUpdateWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1315,6 +1379,7 @@ export type WorkspaceUncheckedUpdateManyWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  plan?: Prisma.EnumWorkspacePlanFieldUpdateOperationsInput | $Enums.WorkspacePlan
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1409,6 +1474,7 @@ export type WorkspaceSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   name?: boolean
   slug?: boolean
   ownerId?: boolean
+  plan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   ingredients?: boolean | Prisma.Workspace$ingredientsArgs<ExtArgs>
@@ -1428,6 +1494,7 @@ export type WorkspaceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   name?: boolean
   slug?: boolean
   ownerId?: boolean
+  plan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1438,6 +1505,7 @@ export type WorkspaceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   name?: boolean
   slug?: boolean
   ownerId?: boolean
+  plan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1448,11 +1516,12 @@ export type WorkspaceSelectScalar = {
   name?: boolean
   slug?: boolean
   ownerId?: boolean
+  plan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type WorkspaceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "ownerId" | "createdAt" | "updatedAt", ExtArgs["result"]["workspace"]>
+export type WorkspaceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "ownerId" | "plan" | "createdAt" | "updatedAt", ExtArgs["result"]["workspace"]>
 export type WorkspaceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   ingredients?: boolean | Prisma.Workspace$ingredientsArgs<ExtArgs>
   memberships?: boolean | Prisma.Workspace$membershipsArgs<ExtArgs>
@@ -1490,6 +1559,7 @@ export type $WorkspacePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     name: string
     slug: string
     ownerId: string
+    plan: $Enums.WorkspacePlan
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["workspace"]>
@@ -1928,6 +1998,7 @@ export interface WorkspaceFieldRefs {
   readonly name: Prisma.FieldRef<"Workspace", 'String'>
   readonly slug: Prisma.FieldRef<"Workspace", 'String'>
   readonly ownerId: Prisma.FieldRef<"Workspace", 'String'>
+  readonly plan: Prisma.FieldRef<"Workspace", 'WorkspacePlan'>
   readonly createdAt: Prisma.FieldRef<"Workspace", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Workspace", 'DateTime'>
 }

@@ -91,3 +91,8 @@ export type RecipePricingProfile = Prisma.RecipePricingProfileModel
  * 
  */
 export type PricingRun = Prisma.PricingRunModel
+/**
+ * Model EmailBlocklist
+ * 
+ */
+export type EmailBlocklist = Prisma.EmailBlocklistModel

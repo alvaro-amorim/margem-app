@@ -4,6 +4,7 @@ import type { User } from "@clerk/nextjs/server";
 
 import { WorkspaceMemberRole } from "@/generated/prisma/enums";
 import { getPrisma, withPrismaRetry } from "@/lib/db";
+import { env } from "@/lib/env";
 
 type SyncClerkUserInput = {
   clerkUserId: string;
@@ -14,6 +15,34 @@ type SyncClerkUserInput = {
 };
 
 type WorkspaceClient = Pick<ReturnType<typeof getPrisma>, "workspace">;
+
+export class BlockedAccessError extends Error {
+  reason?: string | null;
+
+  constructor(message = "Acesso bloqueado.", reason?: string | null) {
+    super(message);
+    this.name = "BlockedAccessError";
+    this.reason = reason ?? null;
+  }
+}
+
+export function isBlockedAccessError(error: unknown): error is BlockedAccessError {
+  return error instanceof BlockedAccessError;
+}
+
+function normalizeEmail(value?: string | null) {
+  return value?.trim().toLowerCase() ?? null;
+}
+
+function shouldGrantPlatformAdmin(email?: string | null) {
+  const normalizedEmail = normalizeEmail(email);
+
+  if (!normalizedEmail) {
+    return false;
+  }
+
+  return env.adminEmails.includes(normalizedEmail);
+}
 
 function slugifyWorkspaceName(value: string) {
   return value
@@ -59,7 +88,7 @@ async function generateUniqueWorkspaceSlug(baseName: string, prismaClient: Works
 function mapClerkUser(clerkUser: User): SyncClerkUserInput {
   return {
     clerkUserId: clerkUser.id,
-    email: clerkUser.primaryEmailAddress?.emailAddress,
+    email: normalizeEmail(clerkUser.primaryEmailAddress?.emailAddress),
     firstName: clerkUser.firstName,
     lastName: clerkUser.lastName,
     imageUrl: clerkUser.imageUrl,
@@ -94,6 +123,31 @@ async function findUserByClerkId(clerkUserId: string) {
   );
 }
 
+async function findBlockedEmail(email?: string | null) {
+  const normalizedEmail = normalizeEmail(email);
+
+  if (!normalizedEmail) {
+    return null;
+  }
+
+  return withPrismaRetry((prisma) =>
+    prisma.emailBlocklist.findUnique({
+      where: {
+        email: normalizedEmail,
+      },
+    }),
+  );
+}
+
+function ensureUserAccess(user: {
+  status: "ACTIVE" | "BLOCKED";
+  blockedReason?: string | null;
+}) {
+  if (user.status === "BLOCKED") {
+    throw new BlockedAccessError("Conta bloqueada.", user.blockedReason);
+  }
+}
+
 export async function getPersistedAuthenticatedContext(clerkUserId: string) {
   const user = await findUserByClerkId(clerkUserId);
 
@@ -101,16 +155,64 @@ export async function getPersistedAuthenticatedContext(clerkUserId: string) {
     return null;
   }
 
+  const elevatedUser =
+    shouldGrantPlatformAdmin(user.email) && user.platformRole !== "ADMIN"
+      ? await withPrismaRetry((prisma) =>
+          prisma.user.update({
+            where: {
+              id: user.id,
+            },
+            data: {
+              platformRole: "ADMIN",
+            },
+            include: {
+              defaultWorkspace: true,
+            },
+          }),
+        )
+      : user;
+
+  ensureUserAccess(elevatedUser);
+
   return {
-    user,
-    workspace: user.defaultWorkspace,
+    user: elevatedUser,
+    workspace: elevatedUser.defaultWorkspace,
   };
 }
 
 export async function syncAuthenticatedUser(input: SyncClerkUserInput) {
   const existingUser = await findUserByClerkId(input.clerkUserId);
+  const blockedEmail = await findBlockedEmail(input.email);
 
-  if (existingUser?.defaultWorkspaceId && existingUser.defaultWorkspace && !hasProfileChanges(existingUser, input)) {
+  if (existingUser) {
+    ensureUserAccess(existingUser);
+  }
+
+  if (blockedEmail) {
+    if (existingUser && existingUser.status !== "BLOCKED") {
+      await withPrismaRetry((prisma) =>
+        prisma.user.update({
+          where: { id: existingUser.id },
+          data: {
+            status: "BLOCKED",
+            blockedReason: blockedEmail.reason ?? "Email bloqueado pela administracao.",
+            blockedAt: new Date(),
+          },
+        }),
+      );
+    }
+
+    throw new BlockedAccessError("Email bloqueado.", blockedEmail.reason);
+  }
+
+  const platformRole = shouldGrantPlatformAdmin(input.email) ? "ADMIN" : undefined;
+
+  if (
+    existingUser?.defaultWorkspaceId &&
+    existingUser.defaultWorkspace &&
+    !hasProfileChanges(existingUser, input) &&
+    (!platformRole || existingUser.platformRole === platformRole)
+  ) {
     return {
       user: existingUser,
       workspace: existingUser.defaultWorkspace,
@@ -126,6 +228,7 @@ export async function syncAuthenticatedUser(input: SyncClerkUserInput) {
           firstName: input.firstName ?? null,
           lastName: input.lastName ?? null,
           imageUrl: input.imageUrl ?? null,
+          ...(platformRole ? { platformRole } : {}),
         },
         include: {
           defaultWorkspace: true,
@@ -143,10 +246,11 @@ export async function syncAuthenticatedUser(input: SyncClerkUserInput) {
       (await prisma.user.create({
         data: {
           clerkUserId: input.clerkUserId,
-          email: input.email ?? null,
+          email: normalizeEmail(input.email) ?? null,
           firstName: input.firstName ?? null,
           lastName: input.lastName ?? null,
           imageUrl: input.imageUrl ?? null,
+          ...(platformRole ? { platformRole } : {}),
         },
       }));
 
@@ -154,10 +258,11 @@ export async function syncAuthenticatedUser(input: SyncClerkUserInput) {
       await prisma.user.update({
         where: { id: existingUser.id },
         data: {
-          email: input.email ?? null,
+          email: normalizeEmail(input.email) ?? null,
           firstName: input.firstName ?? null,
           lastName: input.lastName ?? null,
           imageUrl: input.imageUrl ?? null,
+          ...(platformRole ? { platformRole } : {}),
         },
       });
     }

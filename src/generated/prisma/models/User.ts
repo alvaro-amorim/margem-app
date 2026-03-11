@@ -31,6 +31,10 @@ export type UserMinAggregateOutputType = {
   firstName: string | null
   lastName: string | null
   imageUrl: string | null
+  platformRole: $Enums.PlatformRole | null
+  status: $Enums.PlatformUserStatus | null
+  blockedReason: string | null
+  blockedAt: Date | null
   defaultWorkspaceId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -43,6 +47,10 @@ export type UserMaxAggregateOutputType = {
   firstName: string | null
   lastName: string | null
   imageUrl: string | null
+  platformRole: $Enums.PlatformRole | null
+  status: $Enums.PlatformUserStatus | null
+  blockedReason: string | null
+  blockedAt: Date | null
   defaultWorkspaceId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -55,6 +63,10 @@ export type UserCountAggregateOutputType = {
   firstName: number
   lastName: number
   imageUrl: number
+  platformRole: number
+  status: number
+  blockedReason: number
+  blockedAt: number
   defaultWorkspaceId: number
   createdAt: number
   updatedAt: number
@@ -69,6 +81,10 @@ export type UserMinAggregateInputType = {
   firstName?: true
   lastName?: true
   imageUrl?: true
+  platformRole?: true
+  status?: true
+  blockedReason?: true
+  blockedAt?: true
   defaultWorkspaceId?: true
   createdAt?: true
   updatedAt?: true
@@ -81,6 +97,10 @@ export type UserMaxAggregateInputType = {
   firstName?: true
   lastName?: true
   imageUrl?: true
+  platformRole?: true
+  status?: true
+  blockedReason?: true
+  blockedAt?: true
   defaultWorkspaceId?: true
   createdAt?: true
   updatedAt?: true
@@ -93,6 +113,10 @@ export type UserCountAggregateInputType = {
   firstName?: true
   lastName?: true
   imageUrl?: true
+  platformRole?: true
+  status?: true
+  blockedReason?: true
+  blockedAt?: true
   defaultWorkspaceId?: true
   createdAt?: true
   updatedAt?: true
@@ -178,6 +202,10 @@ export type UserGroupByOutputType = {
   firstName: string | null
   lastName: string | null
   imageUrl: string | null
+  platformRole: $Enums.PlatformRole
+  status: $Enums.PlatformUserStatus
+  blockedReason: string | null
+  blockedAt: Date | null
   defaultWorkspaceId: string | null
   createdAt: Date
   updatedAt: Date
@@ -211,6 +239,10 @@ export type UserWhereInput = {
   firstName?: Prisma.StringNullableFilter<"User"> | string | null
   lastName?: Prisma.StringNullableFilter<"User"> | string | null
   imageUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  platformRole?: Prisma.EnumPlatformRoleFilter<"User"> | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFilter<"User"> | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.StringNullableFilter<"User"> | string | null
+  blockedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   defaultWorkspaceId?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -230,6 +262,10 @@ export type UserOrderByWithRelationInput = {
   firstName?: Prisma.SortOrderInput | Prisma.SortOrder
   lastName?: Prisma.SortOrderInput | Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  platformRole?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  blockedReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  blockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   defaultWorkspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -252,6 +288,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   firstName?: Prisma.StringNullableFilter<"User"> | string | null
   lastName?: Prisma.StringNullableFilter<"User"> | string | null
   imageUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  platformRole?: Prisma.EnumPlatformRoleFilter<"User"> | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFilter<"User"> | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.StringNullableFilter<"User"> | string | null
+  blockedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   defaultWorkspaceId?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -271,6 +311,10 @@ export type UserOrderByWithAggregationInput = {
   firstName?: Prisma.SortOrderInput | Prisma.SortOrder
   lastName?: Prisma.SortOrderInput | Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  platformRole?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  blockedReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  blockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   defaultWorkspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -289,6 +333,10 @@ export type UserScalarWhereWithAggregatesInput = {
   firstName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   lastName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   imageUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  platformRole?: Prisma.EnumPlatformRoleWithAggregatesFilter<"User"> | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusWithAggregatesFilter<"User"> | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  blockedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   defaultWorkspaceId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -301,6 +349,10 @@ export type UserCreateInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   defaultWorkspace?: Prisma.WorkspaceCreateNestedOneWithoutUsersDefaultingInput
@@ -319,6 +371,10 @@ export type UserUncheckedCreateInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   defaultWorkspaceId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -337,6 +393,10 @@ export type UserUpdateInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   defaultWorkspace?: Prisma.WorkspaceUpdateOneWithoutUsersDefaultingNestedInput
@@ -355,6 +415,10 @@ export type UserUncheckedUpdateInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   defaultWorkspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -373,6 +437,10 @@ export type UserCreateManyInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   defaultWorkspaceId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -385,6 +453,10 @@ export type UserUpdateManyMutationInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -396,6 +468,10 @@ export type UserUncheckedUpdateManyInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   defaultWorkspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -408,6 +484,10 @@ export type UserCountOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  platformRole?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  blockedReason?: Prisma.SortOrder
+  blockedAt?: Prisma.SortOrder
   defaultWorkspaceId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -420,6 +500,10 @@ export type UserMaxOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  platformRole?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  blockedReason?: Prisma.SortOrder
+  blockedAt?: Prisma.SortOrder
   defaultWorkspaceId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -432,6 +516,10 @@ export type UserMinOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  platformRole?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  blockedReason?: Prisma.SortOrder
+  blockedAt?: Prisma.SortOrder
   defaultWorkspaceId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -463,6 +551,18 @@ export type StringFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type EnumPlatformRoleFieldUpdateOperationsInput = {
+  set?: $Enums.PlatformRole
+}
+
+export type EnumPlatformUserStatusFieldUpdateOperationsInput = {
+  set?: $Enums.PlatformUserStatus
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -610,6 +710,10 @@ export type UserCreateWithoutOwnedWorkspacesInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   defaultWorkspace?: Prisma.WorkspaceCreateNestedOneWithoutUsersDefaultingInput
@@ -627,6 +731,10 @@ export type UserUncheckedCreateWithoutOwnedWorkspacesInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   defaultWorkspaceId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -649,6 +757,10 @@ export type UserCreateWithoutDefaultWorkspaceInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutCreatedByInput
@@ -666,6 +778,10 @@ export type UserUncheckedCreateWithoutDefaultWorkspaceInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutCreatedByInput
@@ -704,6 +820,10 @@ export type UserUpdateWithoutOwnedWorkspacesInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   defaultWorkspace?: Prisma.WorkspaceUpdateOneWithoutUsersDefaultingNestedInput
@@ -721,6 +841,10 @@ export type UserUncheckedUpdateWithoutOwnedWorkspacesInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   defaultWorkspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -757,6 +881,10 @@ export type UserScalarWhereInput = {
   firstName?: Prisma.StringNullableFilter<"User"> | string | null
   lastName?: Prisma.StringNullableFilter<"User"> | string | null
   imageUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  platformRole?: Prisma.EnumPlatformRoleFilter<"User"> | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFilter<"User"> | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.StringNullableFilter<"User"> | string | null
+  blockedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   defaultWorkspaceId?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -769,6 +897,10 @@ export type UserCreateWithoutMembershipsInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   defaultWorkspace?: Prisma.WorkspaceCreateNestedOneWithoutUsersDefaultingInput
@@ -786,6 +918,10 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   defaultWorkspaceId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -819,6 +955,10 @@ export type UserUpdateWithoutMembershipsInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   defaultWorkspace?: Prisma.WorkspaceUpdateOneWithoutUsersDefaultingNestedInput
@@ -836,6 +976,10 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   defaultWorkspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -853,6 +997,10 @@ export type UserCreateWithoutIngredientsInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   defaultWorkspace?: Prisma.WorkspaceCreateNestedOneWithoutUsersDefaultingInput
@@ -870,6 +1018,10 @@ export type UserUncheckedCreateWithoutIngredientsInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   defaultWorkspaceId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -903,6 +1055,10 @@ export type UserUpdateWithoutIngredientsInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   defaultWorkspace?: Prisma.WorkspaceUpdateOneWithoutUsersDefaultingNestedInput
@@ -920,6 +1076,10 @@ export type UserUncheckedUpdateWithoutIngredientsInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   defaultWorkspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -937,6 +1097,10 @@ export type UserCreateWithoutPriceHistoryInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   defaultWorkspace?: Prisma.WorkspaceCreateNestedOneWithoutUsersDefaultingInput
@@ -954,6 +1118,10 @@ export type UserUncheckedCreateWithoutPriceHistoryInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   defaultWorkspaceId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -987,6 +1155,10 @@ export type UserUpdateWithoutPriceHistoryInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   defaultWorkspace?: Prisma.WorkspaceUpdateOneWithoutUsersDefaultingNestedInput
@@ -1004,6 +1176,10 @@ export type UserUncheckedUpdateWithoutPriceHistoryInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   defaultWorkspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1021,6 +1197,10 @@ export type UserCreateWithoutRecipesInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   defaultWorkspace?: Prisma.WorkspaceCreateNestedOneWithoutUsersDefaultingInput
@@ -1038,6 +1218,10 @@ export type UserUncheckedCreateWithoutRecipesInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   defaultWorkspaceId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1071,6 +1255,10 @@ export type UserUpdateWithoutRecipesInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   defaultWorkspace?: Prisma.WorkspaceUpdateOneWithoutUsersDefaultingNestedInput
@@ -1088,6 +1276,10 @@ export type UserUncheckedUpdateWithoutRecipesInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   defaultWorkspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1105,6 +1297,10 @@ export type UserCreateWithoutPricingRunsInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   defaultWorkspace?: Prisma.WorkspaceCreateNestedOneWithoutUsersDefaultingInput
@@ -1122,6 +1318,10 @@ export type UserUncheckedCreateWithoutPricingRunsInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   defaultWorkspaceId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1155,6 +1355,10 @@ export type UserUpdateWithoutPricingRunsInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   defaultWorkspace?: Prisma.WorkspaceUpdateOneWithoutUsersDefaultingNestedInput
@@ -1172,6 +1376,10 @@ export type UserUncheckedUpdateWithoutPricingRunsInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   defaultWorkspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1189,6 +1397,10 @@ export type UserCreateManyDefaultWorkspaceInput = {
   firstName?: string | null
   lastName?: string | null
   imageUrl?: string | null
+  platformRole?: $Enums.PlatformRole
+  status?: $Enums.PlatformUserStatus
+  blockedReason?: string | null
+  blockedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1200,6 +1412,10 @@ export type UserUpdateWithoutDefaultWorkspaceInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutCreatedByNestedInput
@@ -1217,6 +1433,10 @@ export type UserUncheckedUpdateWithoutDefaultWorkspaceInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1234,6 +1454,10 @@ export type UserUncheckedUpdateManyWithoutDefaultWorkspaceInput = {
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1321,6 +1545,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   firstName?: boolean
   lastName?: boolean
   imageUrl?: boolean
+  platformRole?: boolean
+  status?: boolean
+  blockedReason?: boolean
+  blockedAt?: boolean
   defaultWorkspaceId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1341,6 +1569,10 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   firstName?: boolean
   lastName?: boolean
   imageUrl?: boolean
+  platformRole?: boolean
+  status?: boolean
+  blockedReason?: boolean
+  blockedAt?: boolean
   defaultWorkspaceId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1354,6 +1586,10 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   firstName?: boolean
   lastName?: boolean
   imageUrl?: boolean
+  platformRole?: boolean
+  status?: boolean
+  blockedReason?: boolean
+  blockedAt?: boolean
   defaultWorkspaceId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1367,12 +1603,16 @@ export type UserSelectScalar = {
   firstName?: boolean
   lastName?: boolean
   imageUrl?: boolean
+  platformRole?: boolean
+  status?: boolean
+  blockedReason?: boolean
+  blockedAt?: boolean
   defaultWorkspaceId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "clerkUserId" | "email" | "firstName" | "lastName" | "imageUrl" | "defaultWorkspaceId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "clerkUserId" | "email" | "firstName" | "lastName" | "imageUrl" | "platformRole" | "status" | "blockedReason" | "blockedAt" | "defaultWorkspaceId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   defaultWorkspace?: boolean | Prisma.User$defaultWorkspaceArgs<ExtArgs>
   ingredients?: boolean | Prisma.User$ingredientsArgs<ExtArgs>
@@ -1408,6 +1648,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     firstName: string | null
     lastName: string | null
     imageUrl: string | null
+    platformRole: $Enums.PlatformRole
+    status: $Enums.PlatformUserStatus
+    blockedReason: string | null
+    blockedAt: Date | null
     defaultWorkspaceId: string | null
     createdAt: Date
     updatedAt: Date
@@ -1847,6 +2091,10 @@ export interface UserFieldRefs {
   readonly firstName: Prisma.FieldRef<"User", 'String'>
   readonly lastName: Prisma.FieldRef<"User", 'String'>
   readonly imageUrl: Prisma.FieldRef<"User", 'String'>
+  readonly platformRole: Prisma.FieldRef<"User", 'PlatformRole'>
+  readonly status: Prisma.FieldRef<"User", 'PlatformUserStatus'>
+  readonly blockedReason: Prisma.FieldRef<"User", 'String'>
+  readonly blockedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly defaultWorkspaceId: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>

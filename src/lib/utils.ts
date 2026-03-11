@@ -37,3 +37,17 @@ export function formatDateTime(value: Date | string) {
     timeStyle: "short",
   }).format(date);
 }
+
+export function formatBytes(value: number) {
+  if (!Number.isFinite(value) || value <= 0) {
+    return "0 B";
+  }
+
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  const index = Math.min(Math.floor(Math.log(value) / Math.log(1024)), units.length - 1);
+  const scaledValue = value / 1024 ** index;
+
+  return `${new Intl.NumberFormat("pt-BR", {
+    maximumFractionDigits: scaledValue >= 100 || index === 0 ? 0 : 1,
+  }).format(scaledValue)} ${units[index]}`;
+}

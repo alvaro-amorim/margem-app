@@ -13,6 +13,21 @@ enum WorkspaceMemberRole {
   MEMBER
 }
 
+enum PlatformRole {
+  USER
+  ADMIN
+}
+
+enum PlatformUserStatus {
+  ACTIVE
+  BLOCKED
+}
+
+enum WorkspacePlan {
+  FREE
+  PREMIUM
+}
+
 enum BaseUnit {
   GRAM
   MILLILITER
@@ -44,6 +59,10 @@ model User {
   firstName          String?
   lastName           String?
   imageUrl           String?
+  platformRole       PlatformRole             @default(USER)
+  status             PlatformUserStatus       @default(ACTIVE)
+  blockedReason      String?
+  blockedAt          DateTime?
   defaultWorkspaceId String?
   createdAt          DateTime                 @default(now())
   updatedAt          DateTime                 @updatedAt
@@ -61,6 +80,7 @@ model Workspace {
   name            String
   slug            String                   @unique
   ownerId         String
+  plan            WorkspacePlan            @default(FREE)
   createdAt       DateTime                 @default(now())
   updatedAt       DateTime                 @updatedAt
   ingredients     Ingredient[]
@@ -260,4 +280,12 @@ model PricingRun {
 
   @@index([workspaceId, createdAt])
   @@index([recipeId, createdAt])
+}
+
+model EmailBlocklist {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  reason    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

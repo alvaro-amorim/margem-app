@@ -6,6 +6,7 @@ import { isClerkConfigured } from "@/lib/env";
 const isProtectedRoute = createRouteMatcher([
   "/dashboard(.*)",
   "/account(.*)",
+  "/admin(.*)",
   "/products(.*)",
   "/ingredients(.*)",
   "/recipes(.*)",

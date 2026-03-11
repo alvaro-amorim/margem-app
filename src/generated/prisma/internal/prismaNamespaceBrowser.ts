@@ -60,7 +60,8 @@ export const ModelName = {
   RecipeItem: 'RecipeItem',
   PricingSettings: 'PricingSettings',
   RecipePricingProfile: 'RecipePricingProfile',
-  PricingRun: 'PricingRun'
+  PricingRun: 'PricingRun',
+  EmailBlocklist: 'EmailBlocklist'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -86,6 +87,10 @@ export const UserScalarFieldEnum = {
   firstName: 'firstName',
   lastName: 'lastName',
   imageUrl: 'imageUrl',
+  platformRole: 'platformRole',
+  status: 'status',
+  blockedReason: 'blockedReason',
+  blockedAt: 'blockedAt',
   defaultWorkspaceId: 'defaultWorkspaceId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -99,6 +104,7 @@ export const WorkspaceScalarFieldEnum = {
   name: 'name',
   slug: 'slug',
   ownerId: 'ownerId',
+  plan: 'plan',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -274,6 +280,17 @@ export const PricingRunScalarFieldEnum = {
 } as const
 
 export type PricingRunScalarFieldEnum = (typeof PricingRunScalarFieldEnum)[keyof typeof PricingRunScalarFieldEnum]
+
+
+export const EmailBlocklistScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  reason: 'reason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmailBlocklistScalarFieldEnum = (typeof EmailBlocklistScalarFieldEnum)[keyof typeof EmailBlocklistScalarFieldEnum]
 
 
 export const SortOrder = {

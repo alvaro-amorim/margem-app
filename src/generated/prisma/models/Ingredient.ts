@@ -796,10 +796,6 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type IngredientCreateNestedOneWithoutPriceHistoryInput = {
   create?: Prisma.XOR<Prisma.IngredientCreateWithoutPriceHistoryInput, Prisma.IngredientUncheckedCreateWithoutPriceHistoryInput>
   connectOrCreate?: Prisma.IngredientCreateOrConnectWithoutPriceHistoryInput

@@ -55,10 +55,30 @@ export const clerkEmbeddedAppearance = {
 } as const;
 
 export const clerkProfileAppearance = {
+  layout: {
+    logoImageUrl: "/margem-app-mark.svg",
+  },
+  variables: clerkAppearance.variables,
   elements: {
-    card: "border-0 bg-transparent shadow-none",
-    cardBox: "w-full shadow-none",
     rootBox: "w-full",
+    cardBox: "w-full shadow-none",
+    card: "w-full border-0 bg-transparent shadow-none",
     pageScrollBox: "p-0",
+    scrollBox: "w-full",
+    navbar: "rounded-[1.5rem] border border-slate-200 bg-[#fcfaf3] p-2",
+    navbarButtons: "gap-2",
+    navbarButton:
+      "rounded-2xl px-3 py-2 text-[#5f6777] transition-colors hover:bg-white hover:text-[#172033]",
+    navbarButtonActive: "bg-white text-[#172033] shadow-sm",
+    profilePage: "space-y-4",
+    profileSection:
+      "rounded-[1.5rem] border border-slate-200 bg-white shadow-[0_24px_60px_-36px_rgba(51,65,85,0.22)]",
+    profileSectionTitleText: "text-base font-semibold text-[#172033]",
+    formFieldLabel: "text-sm font-medium text-[#172033]",
+    formFieldInput:
+      "h-11 rounded-2xl border border-slate-200 bg-[#fcfaf3] text-[#172033] shadow-none focus:border-[#d7a130] focus:ring-4 focus:ring-[#f3d48b]/30",
+    formButtonPrimary:
+      "h-11 rounded-full border-0 bg-[#172033] px-5 text-white shadow-none hover:bg-[#0f172a]",
+    badge: "rounded-full bg-[#efe8d5] text-[#172033]",
   },
 } as const;

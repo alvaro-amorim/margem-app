@@ -18,6 +18,30 @@ export const WorkspaceMemberRole = {
 export type WorkspaceMemberRole = (typeof WorkspaceMemberRole)[keyof typeof WorkspaceMemberRole]
 
 
+export const PlatformRole = {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+} as const
+
+export type PlatformRole = (typeof PlatformRole)[keyof typeof PlatformRole]
+
+
+export const PlatformUserStatus = {
+  ACTIVE: 'ACTIVE',
+  BLOCKED: 'BLOCKED'
+} as const
+
+export type PlatformUserStatus = (typeof PlatformUserStatus)[keyof typeof PlatformUserStatus]
+
+
+export const WorkspacePlan = {
+  FREE: 'FREE',
+  PREMIUM: 'PREMIUM'
+} as const
+
+export type WorkspacePlan = (typeof WorkspacePlan)[keyof typeof WorkspacePlan]
+
+
 export const BaseUnit = {
   GRAM: 'GRAM',
   MILLILITER: 'MILLILITER',
